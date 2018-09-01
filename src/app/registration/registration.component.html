@@ -1,0 +1,76 @@
+
+  <style>
+  .button_new {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.button2 {background-color: #008CBA;}
+.button3 {background-color: #f44336;}
+</style>
+  <div>
+    <table border ="1" color="brown">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Id</th>
+          <th>Name</th>
+          <th>AUTHOR</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let registration of registrations; let i = index">
+          <th>{{ i + 1 }}</th>
+          <td>{{ registration.id }}</td>
+          <td>{{ registration.name }}</td>
+         
+          <td>{{ registration.author }}</td>
+          <td>
+            <button type="button" (click)="onEdit(i)" class="button2">Edit</button>
+          </td>
+          <td>
+            <button type="button" (click)="onDelete(i)" class="button3">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <button type="submit" (click)="onNew()" class="button_new">Add New Book</button>
+    </div>
+  </div>
+
+
+  <br>
+  <div *ngIf="showNew">
+    <form (ngSubmit)="onSave()">
+      <div >
+        <label><b>ID</b></label>
+        <div>
+          
+          <input type="text" [(ngModel)]="regModel.id" name="id">
+        </div>
+      </div>
+      <div>
+        <label><b>LABEL</b></label>
+        <div>
+          <input type="text" [(ngModel)]="regModel.name" name="name">
+        </div>
+      </div>
+      <div>
+        <label><b>AUTHOR</b></label>
+        <div>
+          <input type="text" [(ngModel)]="regModel.author" name="author">
+        </div>
+      </div>
+      
+      <button type="submit" >{{submitType}}</button>
+      <button type="submit" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
